@@ -53,6 +53,12 @@ const renderSite = (site) => {
 
   document.title = `${site.brandName} — ${site.headline}`;
   document.querySelector('meta[name="description"]').content = site.description;
+  const favicon = document.querySelector("#brand-favicon");
+  if (site.logoUrl) {
+    favicon.href = site.logoUrl;
+  } else {
+    favicon.removeAttribute("href");
+  }
 
   app.innerHTML = `
     <div class="announcement"><span class="announcement-dot"></span> ${escapeHtml(site.eyebrow)} <span class="announcement-separator">/</span> <a href="${shopUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(texts.announcementShopLabel)} <span aria-hidden="true">↗</span></a></div>
@@ -90,7 +96,6 @@ const renderSite = (site) => {
               <img class="hero-image" src="${escapeHtml(site.heroImageUrl)}" alt="${escapeHtml(texts.heroImageAltText)}" fetchpriority="high">
               <div class="image-shade"></div>
               <div class="hero-vertical-label">${escapeHtml(texts.heroVerticalLabel)}</div>
-              <div class="hero-stamp"><span>${escapeHtml(texts.heroStampTop)}</span><b>${escapeHtml(texts.heroStampBottom)}</b><i>${escapeHtml(texts.heroStampDate)}</i></div>
             </div>
             <div class="hero-side-note"><span class="side-note-line"></span><span>${escapeHtml(texts.heroSideNote).replace(/\s*\/\s*/g, "<br>")}</span></div>
           </div>

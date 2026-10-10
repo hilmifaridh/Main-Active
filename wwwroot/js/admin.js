@@ -26,9 +26,6 @@ const copyGroups = [
       ["heroSecondaryActionLabel", "Tombol kedua hero"],
       ["heroImageAltText", "Teks alternatif gambar hero"],
       ["heroVerticalLabel", "Teks vertikal gambar hero"],
-      ["heroStampTop", "Teks atas badge hero"],
-      ["heroStampBottom", "Teks utama badge hero"],
-      ["heroStampDate", "Teks bawah badge hero"],
       ["heroSideNote", "Catatan samping hero (pisahkan baris dengan /)", true],
       ["heroCoordinate", "Teks koordinat hero"],
       ["scrollCueLabel", "Petunjuk scroll"],
@@ -145,6 +142,12 @@ const updateBrandSettings = (content) => {
     brandName: content.brandName,
     logoUrl: content.logoUrl || "",
   };
+  const favicon = document.querySelector("#brand-favicon");
+  if (brandSettings.logoUrl) {
+    favicon.href = brandSettings.logoUrl;
+  } else {
+    favicon.removeAttribute("href");
+  }
 };
 
 const showLogin = (message = "") => {

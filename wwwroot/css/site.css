@@ -81,10 +81,6 @@ h1, h2, h3, p { margin-top: 0; }
 .image-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgb(10 11 10 / 68%), transparent 55%), linear-gradient(90deg, rgb(12 13 11 / 24%), transparent 58%); }
 .hero-image-wrap::before { position: absolute; z-index: 1; inset: 14px; border: 1px solid rgb(255 255 255 / 19%); content: ""; pointer-events: none; }
 .hero-vertical-label { position: absolute; top: 50%; left: 4px; color: rgb(255 255 255 / 72%); font-size: 8px; font-weight: 700; letter-spacing: 2px; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
-.hero-stamp { position: absolute; right: 33px; bottom: 32px; display: flex; width: 97px; height: 97px; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--lime); border-radius: 50%; color: var(--lime); transform: rotate(-13deg); }
-.hero-stamp span { font-size: 8px; letter-spacing: 2px; }
-.hero-stamp b { font-family: var(--font-display); font-size: 24px; line-height: 1; }
-.hero-stamp i { margin-top: 4px; font-size: 6px; font-style: normal; letter-spacing: 1px; }
 .hero-side-note { position: absolute; top: 50%; right: -25px; display: flex; align-items: center; gap: 12px; color: #9a9d92; font-size: 7px; font-weight: 700; letter-spacing: 1px; line-height: 1.7; writing-mode: vertical-rl; transform: translateY(-50%); }
 .side-note-line { width: 1px; height: 33px; background: var(--lime); }
 .hero-coordinate { position: absolute; right: 3px; bottom: 26px; color: #74766f; font-size: 8px; letter-spacing: 1.2px; }
@@ -329,8 +325,6 @@ h1, h2, h3, p { margin-top: 0; }
   .hero-visual { height: 325px; min-height: 0; margin: 7px 9px 42px; }
   .hero-image-wrap { inset: 8px 19px 10px 12px; }
   .hero-vertical-label { font-size: 6px; }
-  .hero-stamp { right: 20px; bottom: 20px; width: 73px; height: 73px; }
-  .hero-stamp b { font-size: 19px; }
   .hero-side-note { right: -16px; font-size: 6px; }
   .hero-coordinate { right: 2px; bottom: -9px; font-size: 6px; }
   .scroll-cue { bottom: 14px; left: 18px; font-size: 7px; }

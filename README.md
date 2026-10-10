@@ -1,26 +1,23 @@
-# Base Project Website — ASP.NET Core
+# Main Active — Landing Page & CMS
 
-Fondasi website client yang menggabungkan API ASP.NET Core dengan frontend responsif berbasis HTML, CSS, dan JavaScript. Konten dan identitas setiap client bisa diganti lewat konfigurasi tanpa mengubah kode tampilan.
+Website brand apparel olahraga Main Active dengan katalog produk interaktif dan CMS admin.
 
-## Menjalankan project
+## Menjalankan aplikasi
 
 Persyaratan: .NET 10 SDK.
 
 ```powershell
+$env:Admin__Username = "admin"
+$env:Admin__Password = "ganti-dengan-password-kuat"
 dotnet run
 ```
 
-Buka alamat HTTP yang ditampilkan di terminal untuk melihat website.
+Buka URL yang muncul di terminal untuk landing page. CMS tersedia di `/admin.html`. Ganti password contoh dengan rahasia yang kuat; jangan simpan kredensial produksi di file konfigurasi atau source control. Login memakai cookie HttpOnly dengan masa sesi terbatas. Batasi aplikasi produksi ke HTTPS.
 
-## Mengadaptasi untuk client baru
+## CMS dan penyimpanan
 
-Edit bagian `Site` di `appsettings.json` untuk mengganti:
+Dashboard `/admin.html` dapat mengubah semua teks landing page, termasuk empat running text terpisah, navigasi, bagian hero, katalog, cerita, ajakan, footer, dan label aksesibilitas. Ticker berjalan terus ke kiri dengan lebar rangkaian yang menyesuaikan viewport agar loop tidak menyisakan ruang kosong. Admin juga dapat menambah, mengganti, dan menghapus hingga 12 banner slide; setiap banner memiliki URL gambar, teks alternatif, serta URL tujuan opsional. Konten lama tanpa banner mendapat satu slide awal menggunakan gambar hero, yang dapat diganti atau dihapus admin. Banner tampil di antara ticker dan katalog dengan navigasi slide dan autoplay yang berhenti saat diarahkan atau difokuskan. CMS juga mengelola foto hero, URL logo, tautan Instagram/toko, serta produk, harga, foto, URL halaman produk, kategori, status, badge, dan deskripsi. Jarak antar-item running text diatur konsisten oleh desain, bukan digabung ke dalam teks yang diinput. Logo brand dipakai pada landing page, sidebar CMS, dan halaman login. Tautan gambar dan tombol beli pada setiap kartu katalog membuka URL produk masing-masing. Perubahan diterbitkan langsung ke landing page.
 
-- Nama brand, inisial logo, eyebrow, headline, dan deskripsi.
-- Alamat email, nomor telepon, dan lokasi.
-- Warna utama dan aksen (format hex enam digit, contoh `#183A37`).
-- Daftar layanan, karya, dan statistik.
+Konten awal ditampilkan dari data contoh di aplikasi. Setelah perubahan pertama disimpan, konten persisten tersimpan pada `App_Data/site-content.json` di folder aplikasi. Pastikan folder tersebut dapat ditulis oleh proses aplikasi dan ikutkan dalam strategi backup deployment. Penyimpanan file ini sesuai untuk satu instance aplikasi; gunakan database bersama jika aplikasi dijalankan dalam beberapa instance.
 
-Website mengambil pengaturan dari `GET /api/site-config`. Endpoint `GET /api/health` menyediakan pemeriksaan status sederhana. Struktur halaman dan styling ada di `wwwroot`; pengaturan yang sama digunakan untuk semua client, sementara kontennya tinggal disesuaikan.
-
-Nilai pada `appsettings.json` adalah konten contoh; ganti dengan informasi client sebelum deployment. Untuk deployment, simpan nilai yang sensitif di environment variables atau secret manager, bukan di file konfigurasi yang masuk source control.
+API publik: `GET /api/content`. Endpoint admin: `POST /api/admin/login`, `POST /api/admin/logout`, `GET /api/admin/content`, dan `PUT /api/admin/content`. OpenAPI tersedia pada `/openapi/v1.json` saat Development.

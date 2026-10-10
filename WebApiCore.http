@@ -1,9 +1,126 @@
 @WebApiCore_HostAddress = http://localhost:5039
+@AdminUsername = admin
+@AdminPassword = {{$dotenv ADMIN_PASSWORD}}
 
+### Health check
 GET {{WebApiCore_HostAddress}}/api/health
 Accept: application/json
 
-###
-
-GET {{WebApiCore_HostAddress}}/api/site-config
+### Published landing-page content and catalog
+GET {{WebApiCore_HostAddress}}/api/content
 Accept: application/json
+
+### Admin content requires authentication
+GET {{WebApiCore_HostAddress}}/api/admin/content
+Accept: application/json
+
+### Sign in (configure ADMIN_PASSWORD in the REST Client environment)
+POST {{WebApiCore_HostAddress}}/api/admin/login
+Content-Type: application/json
+
+{
+  "username": "{{AdminUsername}}",
+  "password": "{{AdminPassword}}"
+}
+
+### Update landing-page content and catalog
+PUT {{WebApiCore_HostAddress}}/api/admin/content
+Content-Type: application/json
+
+{
+  "brandName": "MAIN ACTIVE",
+  "eyebrow": "100% LOCAL PRIDE · BUILT TO MOVE",
+  "headline": "Gerak bebas. Tampil beda.",
+  "description": "Sportswear lokal dengan desain minimal, bahan ringan, dan sirkulasi udara yang nyaman untuk setiap permainan.",
+  "storyHeadline": "Dibuat untuk setiap versi dirimu.",
+  "storyDescription": "Sportswear yang mengikuti gerakmu, dibuat dengan kebanggaan lokal.",
+  "heroImageUrl": "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1500&q=85",
+  "shopUrl": "https://shopee.co.id/main.inc",
+  "instagramUrl": "https://www.instagram.com/maininc.id/",
+  "logoUrl": "",
+  "runningText": "MADE FOR MOVEMENT · 100% LOCAL PRIDE · LIGHTWEIGHT · BREATHABLE",
+  "texts": {
+    "announcementShopLabel": "SHOP ONLINE",
+    "brandHomeAriaLabel": "beranda",
+    "primaryNavigationAriaLabel": "Navigasi utama",
+    "navCatalogLabel": "Koleksi",
+    "navStoryLabel": "Cerita kami",
+    "navInstagramLabel": "Instagram",
+    "navShopLabel": "Belanja sekarang",
+    "menuOpenLabel": "Buka navigasi",
+    "heroPrimaryActionLabel": "Jelajahi koleksi",
+    "heroSecondaryActionLabel": "Kenali Main Active",
+    "heroImageAltText": "Atmosfer olahraga dan gerak aktif",
+    "heroVerticalLabel": "MAIN ACTIVE · INDONESIA",
+    "heroStampTop": "LOCAL",
+    "heroStampBottom": "PRIDE",
+    "heroStampDate": "EST. 2020",
+    "heroSideNote": "LIGHTWEIGHT / ALL DAY LONG",
+    "heroCoordinate": "06°12' S 106°49' E",
+    "scrollCueLabel": "SCROLL TO EXPLORE",
+    "heroFootnoteLabel": "DESIGNED TO MOVE",
+    "heroFootnoteIndex": "01 / 03",
+    "runningText1": "MADE FOR MOVEMENT",
+    "runningText2": "100% LOCAL PRIDE",
+    "runningText3": "LIGHTWEIGHT",
+    "runningText4": "BREATHABLE",
+    "catalogKicker": "01 — THE COLLECTION",
+    "catalogTitleLine1": "Gear up.",
+    "catalogTitleLine2": "Go further.",
+    "catalogDescription": "Dibuat untuk permainanmu. Didesain untuk gerakmu. Temukan apparel yang terasa nyaman sejak peluit pertama.",
+    "catalogAllFilterLabel": "Semua",
+    "catalogFilterAriaLabel": "Filter kategori produk",
+    "catalogCountLabel": "PRODUCTS",
+    "productViewLabel": "VIEW ITEM",
+    "productBuyLabel": "BELI SEKARANG",
+    "productUnavailableLabel": "SEGERA HADIR",
+    "catalogFooterNote": "MADE WITH INTENTION. WORN WITH PURPOSE.",
+    "catalogShopLinkLabel": "Temukan lebih banyak di Shopee",
+    "storyImageAltText": "Semangat bermain dan bergerak bersama",
+    "storyImageCaption": "THE SPIRIT OF THE GAME — 001",
+    "storyKicker": "02 — OUR POINT OF VIEW",
+    "storyFeature1Title": "Ringan saat bergerak",
+    "storyFeature1Description": "Nyaman mengikuti ritme permainanmu.",
+    "storyFeature2Title": "Breathable by design",
+    "storyFeature2Description": "Lebih siap menghadapi sesi yang panjang.",
+    "storyFeature3Title": "Local, with pride",
+    "storyFeature3Description": "Dibuat dengan semangat Indonesia.",
+    "storyActionLabel": "Ikuti perjalanan kami",
+    "closingKicker": "YOUR GAME. YOUR MOVE.",
+    "closingTitleLine1": "Siap bergerak",
+    "closingTitleLine2": "lebih jauh?",
+    "closingActionLabel": "Temukan gear-mu",
+    "footerTaglineLine1": "Sportswear made for movement.",
+    "footerTaglineLine2": "Built with local pride in Indonesia.",
+    "footerCatalogLabel": "Koleksi",
+    "footerInstagramLabel": "Instagram",
+    "footerShopLabel": "Shopee",
+    "footerCopyrightLabel": "ALL RIGHTS RESERVED.",
+    "footerAdminLabel": "ADMIN CMS",
+    "footerTopLabel": "BACK TO TOP"
+  },
+  "banners": [
+    {
+      "id": "c66e1c06-39e4-408e-9d04-8c24cb193dfc",
+      "imageUrl": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1800&q=85",
+      "altText": "Koleksi jersey Main Active",
+      "linkUrl": "https://shopee.co.id/main.inc"
+    }
+  ],
+  "products": [
+    {
+      "id": "4ec0eafb-6976-4ed4-9e23-44b4f56f34cd",
+      "name": "Core Match Jersey",
+      "category": "Matchday",
+      "price": 189000,
+      "description": "Jersey ringan dengan potongan atletik dan sirkulasi udara untuk permainan intens.",
+      "imageUrl": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=85",
+      "productUrl": "https://shopee.co.id/main.inc",
+      "badge": "BEST SELLER",
+      "isAvailable": true
+    }
+  ]
+}
+
+### Sign out
+POST {{WebApiCore_HostAddress}}/api/admin/logout

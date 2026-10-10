@@ -76,7 +76,7 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-index { color: var(--lime); }
 .hero-footnote-line { width: 40px; height: 1px; background: #51544d; }
 .hero-visual { position: relative; height: min(570px, 50vw); min-height: 420px; margin-left: -14px; }
-.hero-image-wrap { position: absolute; inset: 28px 30px 24px 26px; overflow: hidden; background: linear-gradient(145deg, #3b4134, #1c201b 65%); }
+.hero-image-wrap { position: absolute; inset: 28px 30px 24px 26px; overflow: hidden; background: linear-gradient(145deg, #3b4134, #1c201b 65%); -webkit-mask-image: radial-gradient(ellipse at center, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse at center, #000 62%, transparent 100%); }
 .hero-image { width: 100%; height: 100%; object-fit: cover; object-position: 48% center; filter: saturate(.64) contrast(1.08); }
 .image-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgb(10 11 10 / 68%), transparent 55%), linear-gradient(90deg, rgb(12 13 11 / 24%), transparent 58%); }
 .hero-image-wrap::before { position: absolute; z-index: 1; inset: 14px; border: 1px solid rgb(255 255 255 / 19%); content: ""; pointer-events: none; }
